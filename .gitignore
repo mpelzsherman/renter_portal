@@ -1,0 +1,10 @@
+/.bundle
+/log/*.log
+/tmp
+.ruby-gemset
+.ruby-version
+*.gz
+vendor/ruby
+vendor/cache
+~*
+.DS_Store
