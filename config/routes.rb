@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
+  devise_for :landlords
+  devise_for :tenants
+
   get 'home/index'
-
-  devise_for :accounts
-
   root to: "home#index"
+
 end

@@ -6,8 +6,9 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    = render :partial => 'shared/header'
-    %p.notice= notice
-    %p.alert= alert
+    = nav_bar :fixed => :top do
+      = menu_group do
+        = menu_item "Home", root_path
     .container
+      = render :partial => 'shared/header'
       = yield

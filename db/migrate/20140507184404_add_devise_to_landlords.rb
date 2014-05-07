@@ -1,6 +1,6 @@
-class DeviseCreateAccounts < ActiveRecord::Migration
-  def change
-    create_table(:accounts) do |t|
+class AddDeviseToLandlords < ActiveRecord::Migration
+  def self.up
+    change_table(:landlords) do |t|
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
@@ -31,12 +31,19 @@ class DeviseCreateAccounts < ActiveRecord::Migration
       # t.datetime :locked_at
 
 
-      t.timestamps
+      # Uncomment below if timestamps were not included in your original model.
+      # t.timestamps
     end
 
-    add_index :accounts, :email,                unique: true
-    add_index :accounts, :reset_password_token, unique: true
-    # add_index :accounts, :confirmation_token,   unique: true
-    # add_index :accounts, :unlock_token,         unique: true
+    add_index :landlords, :email,                unique: true
+    add_index :landlords, :reset_password_token, unique: true
+    # add_index :landlords, :confirmation_token,   unique: true
+    # add_index :landlords, :unlock_token,         unique: true
+  end
+
+  def self.down
+    # By default, we don't want to make any assumption about how to roll back a migration when your
+    # model already existed. Please edit below which fields you would like to remove in this migration.
+    raise ActiveRecord::IrreversibleMigration
   end
 end
