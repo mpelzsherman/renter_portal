@@ -15,3 +15,4 @@ gem 'spring',        group: :development
 gem 'devise'
 gem 'cancan'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+gem "twitter-bootstrap-rails"
