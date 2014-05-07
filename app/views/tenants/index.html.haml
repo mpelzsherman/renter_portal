@@ -2,12 +2,18 @@
 
 %table
   %tr
+    %th Name
+    %th Email
+    %th Address
     %th
     %th
     %th
 
   - @tenants.each do |tenant|
     %tr
+      %td= "#{tenant.account.first_name}, #{tenant.account.first_name}"
+      %td= tenant.email
+      %td= "#{tenant.account.street}, #{tenant.account.city}, #{tenant.account.state}"
       %td= link_to 'Show', tenant
       %td= link_to 'Edit', edit_tenant_path(tenant)
       %td= link_to 'Destroy', tenant, :method => :delete, :data => { :confirm => 'Are you sure?' }
