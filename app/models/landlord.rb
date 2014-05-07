@@ -5,4 +5,5 @@ class Landlord < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   belongs_to :account
   accepts_nested_attributes_for :account
+  has_many :tennants
 end
