@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140507155230) do
+ActiveRecord::Schema.define(version: 20140507161834) do
 
   create_table "accounts", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -26,6 +26,12 @@ ActiveRecord::Schema.define(version: 20140507155230) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "street"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
   end
 
   add_index "accounts", ["email"], name: "index_accounts_on_email", unique: true, using: :btree
