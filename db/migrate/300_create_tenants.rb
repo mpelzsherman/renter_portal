@@ -1,8 +1,9 @@
 class CreateTenants < ActiveRecord::Migration
   def change
     create_table :tenants do |t|
-      t.string :account_id
-      t.string :landlord_id
+      t.integer :account_id
+      t.integer :landlord_id
+      t.string :stripe_customer_id
 
       t.timestamps
     end
