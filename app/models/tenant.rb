@@ -5,4 +5,5 @@ class Tenant < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   belongs_to :account
   accepts_nested_attributes_for :account
+  #attr_accessible :email, :password
 end

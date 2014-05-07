@@ -1,0 +1,23 @@
+%h1 Listing landlords
+
+%table
+  %tr
+    %th Name
+    %th Email
+    %th Address
+    %th
+    %th
+    %th
+
+  - @landlords.each do |landlord|
+    %tr
+      %td= "#{landlord.account.first_name}, #{landlord.account.first_name}"
+      %td= landlord.email
+      %td= "#{landlord.account.street}, #{landlord.account.city}, #{landlord.account.state}"
+      %td= link_to 'Show', landlord
+      %td= link_to 'Edit', edit_landlord_path(landlord)
+      %td= link_to 'Destroy', landlord, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Landlord', new_landlord_path

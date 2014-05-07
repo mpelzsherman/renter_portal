@@ -1,8 +1,8 @@
 %ul.nav
-- if !current_tenant
-  %li= link_to 'Sign In as Tenant', new_tenant_session_path
+  - if !current_tenant
+    %li= link_to 'Sign In as Tenant', new_tenant_session_path
 
-- if !current_landlord
-  %li= link_to 'Sign In as Landlord', new_landlord_session_path
+  - if !current_landlord
+    %li= link_to 'Sign In as Landlord', new_landlord_session_path
 
   %li=link_to "View Payments", controller: :payments
