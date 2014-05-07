@@ -8,6 +8,8 @@ Bundler.require(*Rails.groups)
 
 module RenterPortal
   class Application < Rails::Application
+    state_hash = YAML.load(File.open("#{Rails.root}/config/states.yml"))
+    config.states = state_hash['states']
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

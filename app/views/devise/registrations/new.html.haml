@@ -31,8 +31,6 @@
       %br/
       = a.text_field :city
     %div
-      = a.label :state
-      %br/
-      = a.text_field :state
+      = a.select(:state, Rails.configuration.states)
   %div= f.submit "Sign up"
 = render "devise/shared/links"
