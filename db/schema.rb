@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140507185407) do
+ActiveRecord::Schema.define(version: 20140507190346) do
 
   create_table "accounts", force: true do |t|
     t.string   "first_name"
@@ -62,5 +62,12 @@ ActiveRecord::Schema.define(version: 20140507185407) do
 
   add_index "tenants", ["email"], name: "index_tenants_on_email", unique: true, using: :btree
   add_index "tenants", ["reset_password_token"], name: "index_tenants_on_reset_password_token", unique: true, using: :btree
+
+  create_table "customers", force: true do |t|
+    t.string   "stripe_customer_id"
+    t.integer  "account_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

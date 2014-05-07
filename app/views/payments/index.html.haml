@@ -1,10 +1,14 @@
 %h1
   Total Payments
 
--if @invoices
+-unless @invoice_presenter.empty?
   %table
     %tr
       %th Due Date
-      %th Date Paid  
+      %th Amount
+    -@invoice_presenter.each do |f|
+      %tr
+        %td= f[:due] 
+        %td= number_to_currency(f[:amount] )
 -else
   %h2 You have no payments

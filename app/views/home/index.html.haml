@@ -3,3 +3,6 @@
 
 - if !current_landlord
   %h1= link_to 'Sign In as Landlord', new_landlord_session_path
+%h1 Welcome to the Renter Portal!
+%ul.nav
+  =link_to "View Payments", controller: :payments

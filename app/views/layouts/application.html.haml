@@ -10,5 +10,8 @@
       = menu_group do
         = menu_item "Home", root_path
     .container
-      = render :partial => 'shared/header'
+      -if notice
+        %p.notice= notice
+      -if alert 
+        %p.alert= alert
       = yield
