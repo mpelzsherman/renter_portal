@@ -14,3 +14,4 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 gem 'devise'
 gem 'cancan'
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
