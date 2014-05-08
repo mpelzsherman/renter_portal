@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 600) do
 
   create_table "properties", force: true do |t|
     t.integer  "landlords_id"
+    t.string   "name"
     t.string   "street"
     t.string   "city"
     t.string   "state"

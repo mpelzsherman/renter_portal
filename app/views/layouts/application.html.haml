@@ -9,6 +9,9 @@
     = nav_bar :fixed => :top do
       = menu_group do
         = menu_item "Home", root_path
+        = menu_item "Landlords", "/landlords"
+        = menu_item "Tenants", "/tenants"
+        = menu_item "Properties", "/properties"
     .container
       = render :partial => 'shared/header'
       = yield

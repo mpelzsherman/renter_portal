@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resources :tenants
   resources :landlords
+  resources :properties
 
   resources :payments do
     member do

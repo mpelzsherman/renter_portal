@@ -2,6 +2,7 @@ class CreateProperties < ActiveRecord::Migration
   def change
     create_table :properties do |t|
       t.belongs_to :landlords
+      t.string :name
       t.string :street
       t.string :city
       t.string :state
