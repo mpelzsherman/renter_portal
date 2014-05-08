@@ -1,12 +1,22 @@
 class ServiceRequestsController < ApplicationController
   before_action :set_service_request, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_tenant!, only: [:show, :new, :create, :destroy]
-  before_action :authenticate_landlord!, only: [:edit, :update, :show]
+  before_action :authenticate_tenant!, only: [:index, :show, :new, :create, :destroy]
+  before_action :authenticate_landlord!, only: [:index, :edit, :update, :show]
+
+  def current_user
+    @current_user = current_landlord || current_tenant
+  end
 
   # GET /service_requests
   # GET /service_requests.json
   def index
-    @service_requests = ServiceRequest.all
+    if current_user.kind_of? Landlord
+      @service_requests = ServiceRequest.where(property: current_landlord.properties)
+    elsif current_user.kind_of? Tenant
+      @service_requests = ServiceRequest.where(tenant: current_tenant)
+    else
+      @service_requests = []
+    end
   end
 
   # GET /service_requests/1
@@ -17,6 +27,8 @@ class ServiceRequestsController < ApplicationController
   # GET /service_requests/new
   def new
     @service_request = ServiceRequest.new
+    @service_request.tenant = current_tenant
+    @service_request.property = current_tenant.property
   end
 
   # GET /service_requests/1/edit
@@ -28,6 +40,7 @@ class ServiceRequestsController < ApplicationController
   def create
     @service_request = ServiceRequest.new(service_request_params)
     @service_request.tenant = current_tenant
+    @service_request.property = current_tenant.property
 
     respond_to do |format|
       if @service_request.save
@@ -65,13 +78,13 @@ class ServiceRequestsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_service_request
-      @service_request = ServiceRequest.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_service_request
+    @service_request = ServiceRequest.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def service_request_params
-      params.require(:service_request).permit([:content, :status, :tenant_id])
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def service_request_params
+    params.require(:service_request).permit([:content, :status, :tenant_id])
+  end
 end
