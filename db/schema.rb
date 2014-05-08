@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 500) do
+ActiveRecord::Schema.define(version: 600) do
 
   create_table "accounts", force: true do |t|
     t.string   "first_name"
@@ -52,6 +52,18 @@ ActiveRecord::Schema.define(version: 500) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "service_requests", force: true do |t|
+    t.integer  "tenant_id"
+    t.integer  "property_id"
+    t.text     "content"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "service_requests", ["property_id"], name: "index_service_requests_on_property_id", using: :btree
+  add_index "service_requests", ["tenant_id"], name: "index_service_requests_on_tenant_id", using: :btree
 
   create_table "tenants", force: true do |t|
     t.integer  "properties_id"
