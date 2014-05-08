@@ -4,6 +4,8 @@
   %tr
     %th Date submitted
     %th Submitted by
+    %th Property
+    %th Landlord
     %th Content
     %th
     %th
@@ -13,6 +15,8 @@
     %tr
       %td= service_request.created_at.to_formatted_s(:short)
       %td= service_request.tenant ? service_request.tenant.email : ''
+      %td= service_request.tenant ? service_request.tenant.property.name : ''
+      %td= service_request.tenant ? service_request.tenant.property.landlord.email : ''
       %td= truncate(service_request.content, length: 30)
       %td= link_to 'Show', service_request
       %td= link_to 'Edit', edit_service_request_path(service_request)

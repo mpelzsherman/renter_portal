@@ -1,3 +1,10 @@
+%div
+  = @property.name
+%h3 Tenants:
+- @property.tenants.each do |tenant|
+  %div
+    = tenant.email
+%br
 = link_to 'Edit', edit_property_path(@property)
 \|
 = link_to 'Back', properties_path
