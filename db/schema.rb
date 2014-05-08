@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140507220453) do
+ActiveRecord::Schema.define(version: 500) do
 
   create_table "accounts", force: true do |t|
     t.string   "first_name"
@@ -43,9 +43,19 @@ ActiveRecord::Schema.define(version: 20140507220453) do
   add_index "landlords", ["email"], name: "index_landlords_on_email", unique: true, using: :btree
   add_index "landlords", ["reset_password_token"], name: "index_landlords_on_reset_password_token", unique: true, using: :btree
 
+  create_table "properties", force: true do |t|
+    t.integer  "landlords_id"
+    t.string   "street"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "tenants", force: true do |t|
+    t.integer  "properties_id"
     t.integer  "account_id"
-    t.integer  "landlord_id"
     t.string   "stripe_customer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -59,7 +69,6 @@ ActiveRecord::Schema.define(version: 20140507220453) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.integer  "landlords_id"
   end
 
   add_index "tenants", ["email"], name: "index_tenants_on_email", unique: true, using: :btree
