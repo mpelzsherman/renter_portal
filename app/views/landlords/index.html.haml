@@ -11,7 +11,7 @@
 
   - @landlords.each do |landlord|
     %tr
-      %td= "#{landlord.account.first_name}, #{landlord.account.first_name}"
+      %td= "#{landlord.account.last_name}, #{landlord.account.first_name}"
       %td= landlord.email
       %td= "#{landlord.account.street}, #{landlord.account.city}, #{landlord.account.state}"
       %td= link_to 'Show', landlord
