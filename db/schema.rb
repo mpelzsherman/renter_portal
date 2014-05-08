@@ -67,7 +67,7 @@ ActiveRecord::Schema.define(version: 600) do
   add_index "service_requests", ["tenant_id"], name: "index_service_requests_on_tenant_id", using: :btree
 
   create_table "tenants", force: true do |t|
-    t.integer  "properties_id"
+    t.integer  "property_id"
     t.integer  "account_id"
     t.string   "stripe_customer_id"
     t.datetime "created_at"

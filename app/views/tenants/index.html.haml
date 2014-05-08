@@ -4,6 +4,7 @@
   %tr
     %th Name
     %th Email
+    %th Landlord
     %th Address
     %th
     %th
@@ -11,8 +12,9 @@
 
   - @tenants.each do |tenant|
     %tr
-      %td= "#{tenant.account.first_name}, #{tenant.account.first_name}"
+      %td= "#{tenant.account.last_name}, #{tenant.account.first_name}"
       %td= tenant.email
+      %td= tenant.property ? tenant.property.landlord.email : ''
       %td= "#{tenant.account.street}, #{tenant.account.city}, #{tenant.account.state}"
       %td= link_to 'Show', tenant
       %td= link_to 'Edit', edit_tenant_path(tenant)

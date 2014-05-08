@@ -13,6 +13,9 @@
     = f.label :password_confirmation
     %br/
     = f.password_field :password_confirmation, autocomplete: "off"
+  - if resource_name == :tenant
+    %div
+      = collection_select(:property, :property_id, Property.all, :id, :name, prompt: 'Select a property')
   = f.fields_for :account do |a|
     %div
       = a.label :first_name

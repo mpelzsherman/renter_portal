@@ -1,7 +1,7 @@
 class CreateTenants < ActiveRecord::Migration
   def change
     create_table :tenants do |t|
-      t.belongs_to :properties
+      t.belongs_to :property
       t.integer :account_id
       t.string :stripe_customer_id
 
