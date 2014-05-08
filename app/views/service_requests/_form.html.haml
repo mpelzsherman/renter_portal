@@ -5,10 +5,10 @@
       %ul
         - @service_request.errors.full_messages.each do |msg|
           %li= msg
+  %h3= "Property: #{@service_request.property.name}"
   %div
     = f.select :status, ServiceRequest.status.options
   %div
-    = f.label :content
     %br/
     = f.text_area :content, autofocus: true, rows: 10, cols: 80, class: "span8"
   .actions
