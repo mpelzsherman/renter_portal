@@ -3,6 +3,7 @@
 %table.table-striped.table-bordered.table-condensed
   %tr
     %th Name
+    %th Landlord
     %th Address
     %th City
     %th State
@@ -13,6 +14,7 @@
   - @properties.each do |property|
     %tr
       %td= property.name
+      %td= property.landlord.email
       %td= property.street
       %td= property.city
       %td= property.state

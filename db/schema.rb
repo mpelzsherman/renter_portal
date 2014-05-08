@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 600) do
   add_index "landlords", ["reset_password_token"], name: "index_landlords_on_reset_password_token", unique: true, using: :btree
 
   create_table "properties", force: true do |t|
-    t.integer  "landlords_id"
+    t.integer  "landlord_id"
     t.string   "name"
     t.string   "street"
     t.string   "city"

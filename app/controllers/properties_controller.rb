@@ -26,6 +26,7 @@ class PropertiesController < ApplicationController
   # POST /properties.json
   def create
     @property = Property.new(property_params)
+    @property.landlord = current_landlord
 
     respond_to do |format|
       if @property.save
@@ -70,6 +71,6 @@ class PropertiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def property_params
-      params.require(:property).permit([:property, :name, :city, :state])
+      params.require(:property).permit([:property, :landlord_id, :name, :city, :state])
     end
 end
