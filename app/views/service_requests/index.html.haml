@@ -1,0 +1,23 @@
+%h2 Listing service_requests
+
+%table.table-striped.table-bordered.table-condensed
+  %tr
+    %th Date submitted
+    %th Submitted by
+    %th Content
+    %th
+    %th
+    %th
+
+  - @service_requests.each do |service_request|
+    %tr
+      %td= service_request.created_at.to_formatted_s(:short)
+      %td= service_request.tenant ? ervice_request.tenant.email : ''
+      %td= truncate(service_request.content, length: 30)
+      %td= link_to 'Show', service_request
+      %td= link_to 'Edit', edit_service_request_path(service_request)
+      %td= link_to 'Destroy', service_request, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Service request', new_service_request_path
