@@ -72,6 +72,6 @@ class ServiceRequestsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def service_request_params
-      params.require(:service_request).permit([:content, :tenant_id])
+      params.require(:service_request).permit([:content, :status, :tenant_id])
     end
 end

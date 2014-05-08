@@ -3,6 +3,7 @@
 %table.table-striped.table-bordered.table-condensed
   %tr
     %th Date submitted
+    %th Status
     %th Submitted by
     %th Property
     %th Landlord
@@ -14,6 +15,7 @@
   - @service_requests.each do |service_request|
     %tr
       %td= service_request.created_at.to_formatted_s(:short)
+      %td= service_request.status.text
       %td= service_request.tenant ? service_request.tenant.email : ''
       %td= service_request.tenant ? service_request.tenant.property.name : ''
       %td= service_request.tenant ? service_request.tenant.property.landlord.email : ''
