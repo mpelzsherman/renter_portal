@@ -1,0 +1,26 @@
+= form_for @property do |f|
+  %div
+    = f.label :name
+    %br/
+    = f.text_field :name, autofocus: true
+  %div
+    = f.label :street
+    %br/
+    = f.text_field :street
+  %div
+    = f.label :city
+    %br/
+    = f.text_field :city
+  %div
+    = f.label :state
+    %br/
+    = f.text_field :state
+  - if @property.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@property.errors.count, "error")} prohibited this property from being saved:"
+      %ul
+        - @property.errors.full_messages.each do |msg|
+          %li= msg
+
+  .actions
+    = f.submit 'Save'
