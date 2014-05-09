@@ -16,6 +16,11 @@
   - if resource_name == :tenant
     %div
       = collection_select(:property, :property_id, Property.all, :id, :name, prompt: 'Select a property')
+  - else
+    %div
+      = f.label :management_company
+      %br/
+      = f.text_field :management_company
   = f.fields_for :account do |a|
     %div
       = a.label :first_name
