@@ -17,3 +17,9 @@ gem 'cancan'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem "twitter-bootstrap-rails"
 gem 'enumerize'
+
+
+group :deployment do
+  gem 'capistrano', '~> 2.15.0'
+  gem 'capistrano-ext'
+end
