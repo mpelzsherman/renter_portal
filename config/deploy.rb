@@ -14,14 +14,10 @@ set :deploy_to,     "/var/www/#{application}"
 set :deploy_via,    :copy
 set :keep_releases, 5
 set :scm,           "git"
-set :git_enable_submodules, 1
 set :stages,        %w(ci)
 set :user,          "deploy"
 set :use_sudo,      false
-set :unicorn_conf, "/var/www/#{application}/shared/system/unicorn.rb"
-set :unicorn_pid, "/var/www/#{application}/shared/pids/unicorn.pid"
-set :unicorn_old_pid, "/var/www/#{application}/shared/pids/unicorn.pid.oldbin"
-set :bundle_without, [:test, :automation, :cucumber, :deployment, :acceptance, :development]
+set :bundle_without, [:deployment]
 set :ruby_version,  "2.1.1"
 set :chruby_config, "/usr/share/chruby/chruby.sh"
 set :set_ruby_cmd,  "if [ -f #{chruby_config} ] ; then source #{chruby_config}; chruby #{ruby_version}; fi"
@@ -55,13 +51,10 @@ namespace :deploy do
     transaction do
       deploy.update
       primedia.add_version_file
-      primedia.symlink_to_env_rb
-      primedia.symlink_sitemaps
       sleep(3)
       deploy.stop
       deploy.start
       deploy.cleanup
-      primedia.purge_cache
     end
   end
 
@@ -87,21 +80,5 @@ namespace :primedia do
   task :add_version_file, :roles => :web do
     run "cd #{current_path} && echo #{branch} > VERSION"
   end
-
-  desc "Symlink env.rb"
-  task :"symlink_to_env_rb", :roles => :app do
-    run <<-CMD
-      ln -fs #{deploy_to}/shared/system/#{rails_env}.rb #{current_path}/config/environments/#{rails_env}.rb
-    CMD
-  end
-
-  desc "Symlink sitemaps"
-  task :symlink_sitemaps, :roles => :app do
-    run <<-CMD
-      ln -s #{deploy_to}/shared/sitemap/sitemaps #{current_path}/public/sitemaps &&
-      ln -s #{deploy_to}/shared/sitemap/sitemap.xml #{current_path}/public/sitemap.xml
-    CMD
-  end
-
 
 end

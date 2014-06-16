@@ -1,5 +1,3 @@
-set :rails_env, "ci"
+set :rails_env, "development"
 
-role :app,    "renterportal-web-01.ci.nor.primedia.com"
-role :web,    "renterportal-web-01.ci.nor.primedia.com", :primary => true
-role :db,     "renterportal-web-01.ci.nor.primedia.com", :primary => true, :no_release => true
+server "renterportal-web-01.ci.nor.primedia.com", :app, :web, :db, :primary => true
