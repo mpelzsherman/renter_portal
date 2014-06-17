@@ -60,7 +60,7 @@ namespace :deploy do
   end
 
   desc "Start Unicorn"
-  task :start, :roles => :app do
+  task :start, :roles => :app, :on_error => :continue do
     run("/usr/bin/sudo /sbin/service unicorn start")
   end
 
