@@ -1,5 +1,7 @@
-%div
+%h3
   = @property.name
+= "#{@property.street}, #{@property.city} #{@property.state}"
+
 %h3 Tenants:
 - @property.tenants.each do |tenant|
   %div
