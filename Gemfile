@@ -18,6 +18,7 @@ gem 'stripe'
 gem "twitter-bootstrap-rails"
 gem 'enumerize'
 gem 'rake'
+gem 'unicorn', '4.1.1'
 
 group :deployment do
   gem 'capistrano', '~> 2.15.0'
