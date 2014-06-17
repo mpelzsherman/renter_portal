@@ -46,6 +46,7 @@ class ServiceRequestsController < ApplicationController
       if @service_request.save
         format.html { redirect_to @service_request, notice: 'Service request was successfully created.' }
         format.json { render :show, status: :created, location: @service_request }
+        ServiceRequestsMailer.send_new_service_request_email(@service_request).deliver
       else
         format.html { render :new }
         format.json { render json: @service_request.errors, status: :unprocessable_entity }
@@ -60,6 +61,7 @@ class ServiceRequestsController < ApplicationController
       if @service_request.update(service_request_params)
         format.html { redirect_to @service_request, notice: 'Service request was successfully updated.' }
         format.json { render :show, status: :ok, location: @service_request }
+        ServiceRequestsMailer.send_update_service_request_email(@service_request).deliver
       else
         format.html { render :edit }
         format.json { render json: @service_request.errors, status: :unprocessable_entity }
@@ -70,6 +72,7 @@ class ServiceRequestsController < ApplicationController
   # DELETE /service_requests/1
   # DELETE /service_requests/1.json
   def destroy
+    ServiceRequestsMailer.send_delete_service_request_email(@service_request).deliver
     @service_request.destroy
     respond_to do |format|
       format.html { redirect_to service_requests_url, notice: 'Service request was successfully destroyed.' }
