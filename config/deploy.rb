@@ -26,6 +26,7 @@ set(:bundle_cmd) {
 }
 set :branch, "master"
 
+after "deploy:update", "deploy:migrate"
 
 after 'deploy:setup', :symlink_to_webapp
 
