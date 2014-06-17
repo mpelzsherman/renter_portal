@@ -7,7 +7,7 @@ ssh_options[:forward_agent] = true
 set :application,   "renter_portal"
 set :repository,    "git@github.com:primedia/renter_portal.git"
 
-set :build_script,  lambda { "if [ -f Bowerfile ] ; then bundle exec rake bower:install; fi#{' && bundle exec rake assets:precompile' if lambda{stage} != :ci}" }
+set :build_script,  lambda { "mv config/database.yml.deployment config/database.yml #{' && bundle exec rake assets:precompile' if lambda{stage} != :ci}" }
 set :copy_cache,    false # "#{ENV['HOME']}/deploy/#{application}"
 set :copy_exclude,  ['.git']
 set :deploy_to,     "/var/www/#{application}"

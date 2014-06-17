@@ -1,0 +1,9 @@
+development: &development
+  adapter: postgresql
+  host: postgresql-01.ci.nor.primedia.com
+  encoding: unicode
+  min_messages: notice
+  password:
+  pool: 5
+  username: deploy
+  database: renter_portal
