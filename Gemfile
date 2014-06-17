@@ -24,3 +24,14 @@ group :deployment do
   gem 'capistrano', '~> 2.15.0'
   gem 'capistrano-ext'
 end
+
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'pry'
+end
+
+group :development do
+  gem 'letter_opener'
+end
+
+
