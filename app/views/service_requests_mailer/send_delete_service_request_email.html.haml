@@ -1,5 +1,5 @@
 !!! 5
 %html(lang="en-US")
   %body
-    %h3= "The following service request for #{@request.property.name} has been deleted:"
+    %h3= "#{@user} deleted the following service request for #{@request.property.name}:"
     %p= @request.content
