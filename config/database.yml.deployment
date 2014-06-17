@@ -7,3 +7,6 @@ development: &development
   pool: 5
   username: deploy
   database: renter_portal
+
+ci: &ci
+  <<: *development
