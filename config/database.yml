@@ -15,5 +15,10 @@ production: &production
   database: renter_portal_production
 
 test: &test
-  <<: *postgresql
-  database: renter_portal_test
+  host: postgresql-01.ci.nor.primedia.com
+  adapter: postgresql
+  encoding: unicode
+  min_messages: notice
+  pool: 5
+  username: deploy
+  password:
