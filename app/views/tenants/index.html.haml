@@ -2,6 +2,7 @@
 
 %table.table-striped.table-bordered.table-condensed
   %tr
+    %th
     %th Name
     %th Email
     %th Landlord
@@ -12,6 +13,7 @@
 
   - @tenants.each do |tenant|
     %tr
+      %td= image_tag(tenant.photo_url)
       %td= "#{tenant.account.last_name}, #{tenant.account.first_name}"
       %td= tenant.email
       %td= tenant.property ? tenant.property.landlord.email : ''

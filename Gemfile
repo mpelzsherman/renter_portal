@@ -19,6 +19,8 @@ gem "twitter-bootstrap-rails"
 gem 'enumerize'
 gem 'rake'
 gem 'unicorn', '4.1.1'
+gem 'omniauth'
+gem 'omniauth-facebook'
 
 group :deployment do
   gem 'capistrano', '~> 2.15.0'

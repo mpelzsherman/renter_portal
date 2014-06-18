@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :landlords, controllers: {registrations: 'registrations'}
-  devise_for :tenants, controllers: {registrations: 'registrations'}
+  devise_for :tenants, controllers: {registrations: 'registrations', omniauth_callbacks: "omniauth_callbacks" }
 
   get 'home/index'
   root to: "home#index"
