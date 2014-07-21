@@ -12,7 +12,14 @@
         = menu_item "Landlords", "/landlords"
         = menu_item "Tenants", "/tenants"
         = menu_item "Properties", "/properties"
-        = menu_item "Service Requests", "/service_requests"
+        - if current_user
+          -#TODO: find a way to use Devise's "resource_name" here instead
+          - resource_name = current_user.class.name.downcase.pluralize
+          = menu_item "Service Requests", "/#{resource_name}/#{current_user.id}/service_requests"
+      - if current_user
+        -#TODO - make this right-justified
+        = menu_group do
+          = menu_item current_user.account.full_name
     .container
-      = render :partial => 'shared/header'
+      = render partial: 'shared/header'
       = yield

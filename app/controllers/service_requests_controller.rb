@@ -1,18 +1,14 @@
 class ServiceRequestsController < ApplicationController
   before_action :set_service_request, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_tenant!, only: [:index, :show, :new, :create, :destroy]
-  before_action :authenticate_landlord!, only: [:index, :edit, :update, :show]
+  before_action :set_current_user
 
-  def current_user
-    @current_user = current_landlord || current_tenant
-  end
-
-  # GET /service_requests
-  # GET /service_requests.json
+  # GET /tenants/:tenant_id/service_requests(.json)
+  # - OR -
+  # GET /landlords/:landlord_id/service_requests(.json)
   def index
-    if current_user.kind_of? Landlord
+    if request.path.match(/^\/landlord/) && current_landlord
       @service_requests = ServiceRequest.where(property: current_landlord.properties)
-    elsif current_user.kind_of? Tenant
+    elsif request.path.match(/^\/tenants/) && current_tenant
       @service_requests = ServiceRequest.where(tenant: current_tenant)
     else
       @service_requests = []
@@ -84,6 +80,16 @@ class ServiceRequestsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_service_request
     @service_request = ServiceRequest.find(params[:id])
+  end
+
+  def set_current_user
+    if request.path.match(/^\/landlord/) && current_landlord
+      @current_user = current_landlord
+    elsif request.path.match(/^\/tenants/) && current_tenant
+      @current_user = current_tenant
+    else
+      redirect_to "/"
+    end
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

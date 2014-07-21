@@ -1,0 +1,7 @@
+= form_for @service_request do |f|
+  %div
+    = f.label :created_at
+    = @service_request.created_at
+  %div
+    = f.label :content
+    = @service_request.content

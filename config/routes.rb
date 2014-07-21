@@ -5,10 +5,17 @@ Rails.application.routes.draw do
   get 'home/index'
   root to: "home#index"
 
-  resources :tenants
-  resources :landlords
-  resources :properties
   resources :service_requests
+
+  resources :tenants do
+    resources :service_requests
+  end
+
+  resources :landlords do
+    resources :service_requests
+  end
+
+  resources :properties
 
   resources :payments do
     member do
