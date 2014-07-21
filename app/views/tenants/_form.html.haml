@@ -5,6 +5,35 @@
       %ul
         - @tenant.errors.full_messages.each do |msg|
           %li= msg
+  %div
+    = f.label :email
+    %br/
+    = f.email_field :email, autofocus: true
+  %div
+    = collection_select(:property, :property_id, Property.all, :id, :name, prompt: 'Select a property')
+  %div
+    = f.label :unit
+    %br/
+    = f.text_field :unit
+  = f.fields_for :account do |a|
+    %div
+      = a.label :first_name
+      %br/
+      = a.text_field :first_name
+    %div
+      = a.label :last_name
+      %br/
+      = a.text_field :last_name
+    %div
+      = a.label :street
+      %br/
+      = a.text_field :street
+    %div
+      = a.label :city
+      %br/
+      = a.text_field :city
+    %div
+      = a.select(:state, Rails.configuration.states)
 
   .actions
     = f.submit 'Save'
