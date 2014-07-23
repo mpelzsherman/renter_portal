@@ -29,6 +29,9 @@ class ServiceRequestsController < ApplicationController
 
   # GET /service_requests/1/edit
   def edit
+    if request.path.match(/^\/landlord/)
+      @service_request_comment = ServiceRequestComment.new(service_request:@service_request)
+    end
   end
 
   # POST /service_requests
