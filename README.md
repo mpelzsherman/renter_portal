@@ -17,6 +17,7 @@ Getting Started
 - modify `config/database.yml` as needed
 - `rake db:create`
 - `rake db:migrate`
+- `rake db:seed`
  
 Start with `rails s`.
  
