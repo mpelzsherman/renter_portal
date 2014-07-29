@@ -11,8 +11,16 @@
         = menu_item "Home", root_path
         = menu_item "Landlords", "/landlords"
         = menu_item "Tenants", "/tenants"
-        = menu_item "Properties", "/properties"
-        = menu_item "Service Requests", "/service_requests"
+        - if current_user.kind_of? Landlord
+          = menu_item "Properties", "/properties"
+        - if current_user
+          -#TODO: find a way to use Devise's "resource_name" here instead
+          = menu_item "Service Requests", "/#{resource_name}/#{current_user.id}/service_requests"
+      - if current_user
+        %div.pull-right
+          = menu_group do
+            = menu_item "Welcome, #{current_user.account.full_name}"
+            = menu_item "Sign Out", "/#{resource_name}/sign_out", method: 'delete'
     .container
-      = render :partial => 'shared/header'
+      = render partial: 'shared/header'
       = yield
