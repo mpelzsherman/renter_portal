@@ -3,7 +3,7 @@ Renter Portal
 
 Portral for connecting tenants to their property management company and their community.
 
-Potential feature:
+Potential features:
 
 1. Pay Rent Online
 2. Submit Maintenance requests
@@ -11,15 +11,14 @@ Potential feature:
 
 Getting Started
 ===============
-  - install postgres (e.g. brew install postgresql)
-  - 
-  - `bundle install`
-  - `cp config/database.yml.example config/database.yml`
-  - modify `config/database.yml` as needed
-  - `rake db:create`
-  - `rake db:migrate`
+- install postgres (e.g. brew install postgresql)
+- `bundle install`
+- `cp config/database.yml.example config/database.yml`
+- modify `config/database.yml` as needed
+- `rake db:create`
+- `rake db:migrate`
  
- Start with `rails s`.
+Start with `rails s`.
  
 Workflow
 =========
