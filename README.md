@@ -28,11 +28,14 @@ Workflow
 
 Deployment
 ============
-- ssh bot
-- sudo su - deploy
-- cap ci deply:full
+- `ssh bot`
+- `sudo su - deploy`
+- `cd source/renter_portal`
+- `cap ci deploy:full`
 
 CI server is http://renterportal-web-01.ci.nor.primedia.com/
+
+There is no QA or Production server at this time.
 
 
 Stories
