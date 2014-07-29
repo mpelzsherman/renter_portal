@@ -3,7 +3,7 @@
 #
 #   Account: first_name, last_name, street, city, state
 #   Landlord: account_id, email, password, management_company
-#   Property: landlord_id, name, street, city, state, zip 
+#   Property: landlord_id, name, street, city, state, zip
 #   Tenant: property_id, account_id, email, password
 #
 # Tenant Accounts
