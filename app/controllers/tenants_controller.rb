@@ -69,6 +69,7 @@ class TenantsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tenant_params
-      params[:tenant]
+      allow = [:email, :password, :password_confirmation, :unit, property: [:property_id], account_attributes: [:first_name, :last_name, :street, :city, :state, :zip]]
+      params[:tenant].permit(allow)
     end
 end

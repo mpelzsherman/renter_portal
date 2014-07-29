@@ -7,6 +7,7 @@
     %th Email
     %th Landlord
     %th Address
+    %th Unit
     %th
     %th
     %th
@@ -18,6 +19,7 @@
       %td= tenant.email
       %td= tenant.property ? tenant.property.landlord.email : ''
       %td= "#{tenant.account.street}, #{tenant.account.city}, #{tenant.account.state}"
+      %td= tenant.unit
       %td= link_to 'Show', tenant
       %td= link_to 'Edit', edit_tenant_path(tenant)
       %td= link_to 'Destroy', tenant, :method => :delete, :data => { :confirm => 'Are you sure?' }
