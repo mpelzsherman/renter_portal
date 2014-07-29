@@ -4,7 +4,7 @@ postgresql: &postgresql
   min_messages: notice
   password:
   pool: 5
-  username: mpelzsherman
+  username: [username]
 
 development: &development
   <<: *postgresql
