@@ -1,4 +1,4 @@
-%h2= "Listing service requests for #{@current_user.account.full_name}"
+%h2= "Listing service requests for #{current_user.full_name}"
 
 %table.table-striped.table-bordered.table-condensed
   %tr
@@ -23,7 +23,7 @@
       - if current_landlord
         %td= link_to 'Reply', edit_landlord_service_request_path(id: service_request.id)
       - if current_tenant
-        %td= link_to 'Show', tenant_service_request_path(id: current_tenant.id)
+        %td= link_to 'Show', tenant_service_request_path(id: service_request.id)
         %td= link_to 'Edit', edit_tenant_service_request_path(id: service_request.id)
         %td= link_to 'Destroy', tenant_service_request_path(id: service_request.id), :method => :delete, :data => { :confirm => 'Are you sure?' }
 

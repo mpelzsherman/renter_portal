@@ -23,7 +23,7 @@ class TenantServiceRequestController < ServiceRequestsController
       if @service_request.save
         format.html { redirect_to tenant_service_requests_path, notice: 'Service request was successfully created.' }
         format.json { render :show, status: :created, location: @service_request }
-        ServiceRequestsMailer.send_new_service_request_email(@service_request, @current_user.account.full_name).deliver
+        ServiceRequestsMailer.send_new_service_request_email(@service_request, @current_user.full_name, app_base_url).deliver
       else
         format.html { render :new }
         format.json { render json: @service_request.errors, status: :unprocessable_entity }
