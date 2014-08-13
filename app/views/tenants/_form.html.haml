@@ -10,7 +10,8 @@
     %br/
     = f.email_field :email, autofocus: true
   %div
-    = collection_select(:property, :property_id, Property.all, :id, :name, prompt: 'Select a property')
+    = f.label :property
+    = f.collection_select(:property_id, Property.all, :id, :name, prompt: 'Select a property')
   %div
     = f.label :unit
     %br/

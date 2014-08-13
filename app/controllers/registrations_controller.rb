@@ -3,9 +3,14 @@ class RegistrationsController < Devise::RegistrationsController
   def create
     super
 
-    if resource_name == :tenant && params['property']
-      resource.property = Property.find(params['property']['property_id'])
-      resource.save
+    property_id = params['property']['property_id']
+    if resource_name == :tenant && property_id.present?
+      resource.property = Property.find(property_id)
+      begin
+        resource.save
+      rescue ActiveRecord::RecordNotFound
+        Rails.logger.debug "no Property found for id "
+      end
     end
   end
 

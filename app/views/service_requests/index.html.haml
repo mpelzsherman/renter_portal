@@ -29,5 +29,5 @@
 
 %br
 
-- if current_tenant
-  = link_to 'New Service request', new_tenant_service_request_path
+- if current_tenant && current_tenant.property.present?
+  = link_to "New Service request for #{current_tenant.property.name}, Unit #{current_tenant.unit}", new_tenant_service_request_path
