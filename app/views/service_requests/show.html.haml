@@ -2,6 +2,6 @@
   = @service_request.content
 %br
 %br
-= link_to 'Edit', edit_service_request_path(@service_request)
+= link_to 'Edit', edit_tenant_service_request_path(@service_request, @current_tenant.id)
 \|
-= link_to 'Back', service_requests_path
+= link_to 'Back', tenant_service_requests_path(@current_tenant.id)

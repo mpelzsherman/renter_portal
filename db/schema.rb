@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140721111646) do
+ActiveRecord::Schema.define(version: 20140723005542) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,15 @@ ActiveRecord::Schema.define(version: 20140721111646) do
     t.datetime "updated_at"
   end
 
+  create_table "service_request_comments", force: true do |t|
+    t.integer  "service_request_id"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "service_request_comments", ["service_request_id"], name: "index_service_request_comments_on_service_request_id", using: :btree
+
   create_table "service_requests", force: true do |t|
     t.integer  "tenant_id"
     t.integer  "property_id"
@@ -89,7 +98,6 @@ ActiveRecord::Schema.define(version: 20140721111646) do
     t.string   "provider"
     t.string   "uid"
     t.string   "photo_url"
-    t.string   "unit"
   end
 
   add_index "tenants", ["email"], name: "index_tenants_on_email", unique: true, using: :btree

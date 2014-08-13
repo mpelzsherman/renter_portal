@@ -1,4 +1,4 @@
-%h2= "Listing service requests for #{@current_user.account.full_name}"
+%h2= "Listing service requests for #{current_user.full_name}"
 
 %table.table-striped.table-bordered.table-condensed
   %tr
@@ -20,10 +20,14 @@
       %td= service_request.tenant ? service_request.tenant.property.name : ''
       %td= service_request.tenant ? service_request.tenant.property.landlord.email : ''
       %td= truncate(service_request.content, length: 30)
-      %td= link_to 'Show', service_request
-      %td= link_to 'Edit', edit_service_request_path(service_request)
-      %td= link_to 'Destroy', service_request, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      - if current_landlord
+        %td= link_to 'Reply', edit_landlord_service_request_path(id: service_request.id)
+      - if current_tenant
+        %td= link_to 'Show', tenant_service_request_path(id: service_request.id)
+        %td= link_to 'Edit', edit_tenant_service_request_path(id: service_request.id)
+        %td= link_to 'Destroy', tenant_service_request_path(id: service_request.id), :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 
-= link_to 'New Service request', new_service_request_path
+- if current_tenant
+  = link_to 'New Service request', new_tenant_service_request_path
