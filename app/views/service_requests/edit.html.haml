@@ -2,6 +2,6 @@
 
 = render 'form'
 
-= link_to 'Show', @service_request
+= link_to 'Show', tenant_service_requests_path(@service_request)
 \|
-= link_to 'Back', service_requests_path
+= link_to 'Back', tenant_service_requests_path  # TODO: link to the correct resource

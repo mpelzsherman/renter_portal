@@ -1,0 +1,10 @@
+%div
+  = f.label :created_at
+  = @service_request.created_at
+%div
+  = f.label :content
+  = @service_request.content
+= form_for @service_request_comment do |f|
+  %div
+    = f.text_area :content, autofocus: true, rows: 10, cols: 80, class: "span8"
+

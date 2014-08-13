@@ -1,5 +1,8 @@
 !!! 5
 %html(lang="en-US")
   %body
-    %h3= "#{@name} created the following service request for #{@request.property.name}:"
-    %p= @request.content
+    %h3= "#{@tenant_name} created the following service request for #{@service_request.property.name}:"
+    %p= @service_request.content
+    %container
+      %row
+        %a{href: "#{@app_root}/tenants/#{@service_request.tenant_id}/service_requests/#{@service_request.id}"} View this service request at Rentopia!

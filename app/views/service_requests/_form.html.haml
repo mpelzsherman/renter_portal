@@ -1,15 +1,7 @@
-= form_for @service_request do |f|
-  - if @service_request.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@service_request.errors.count, "error")} prohibited this service_request from being saved:"
-      %ul
-        - @service_request.errors.full_messages.each do |msg|
-          %li= msg
-  %h3= "Property: #{@service_request.property.name}"
-  %div
-    = f.select :status, ServiceRequest.status.options
-  %div
-    %br/
-    = f.text_area :content, autofocus: true, rows: 10, cols: 80, class: "span8"
-  .actions
-    = f.submit 'Save'
+%h3= "Property: #{@service_request.property.name}"
+
+- if current_tenant
+  = render partial: 'tenant_form'
+
+- elsif current_landlord
+  = render partial: 'landlord_form'
