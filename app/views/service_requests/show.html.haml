@@ -1,7 +1,12 @@
-%div.span6
-  = @service_request.content
+%table.table-bordered.table-condensed
+  %tr
+    %th.text-left Date Created
+    %th.text-left Content
+    %th
+  %tr
+    %td= @service_request.created_at
+    %td= @service_request.content
+    %td= link_to 'Edit', edit_tenant_service_request_path(@current_tenant, @service_request)
+
 %br
-%br
-= link_to 'Edit', edit_tenant_service_request_path(@service_request, @current_tenant.id)
-\|
-= link_to 'Back', tenant_service_requests_path(@current_tenant.id)
+= link_to 'Back', tenant_service_requests_path
