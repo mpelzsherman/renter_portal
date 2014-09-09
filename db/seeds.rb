@@ -6,6 +6,9 @@
 #   Property: landlord_id, name, street, city, state, zip
 #   Tenant: property_id, account_id, email, password
 #
+
+DatabaseCleaner.clean_with :truncation
+
 # Tenant Accounts
 joe = Account.create(first_name: 'Joe', last_name: 'Tenant', street: '123 Tenant Dr', city: 'Tenantville', state: 'AL', zip: 30093)
 lisa = Account.create(first_name: 'Lisa', last_name: 'Tenant', street: '343 Tenant Dr', city: 'Tenantville', state: 'FL', zip: 30093)
@@ -27,7 +30,11 @@ prop_three = Property.create(landlord: becky_landlord, name: 'Property Three', s
 prop_four = Property.create(landlord: becky_landlord, name: 'Property Four', street: '456 Duplex Drive', city: 'Dothan', state: 'AL', zip: 30092)
 
 # Tenants
-Tenant.create(property: prop_one, account: joe, email: 'joe@test.com', password: 'password')
-Tenant.create(property: prop_three, account: lisa, email: 'lisa@test.com', password: 'password')
-Tenant.create(property: prop_two, account: jeff, email: 'jeff@test.com', password: 'password')
-Tenant.create(property: prop_four, account: lori, email: 'lori@test.com', password: 'password')
+joe_tenant = Tenant.create(property: prop_one, account: joe, email: 'joe@test.com', password: 'password')
+lisa_tenant = Tenant.create(property: prop_three, account: lisa, email: 'lisa@test.com', password: 'password')
+jeff_tenant = Tenant.create(property: prop_two, account: jeff, email: 'jeff@test.com', password: 'password')
+lori_tenant = Tenant.create(property: prop_four, account: lori, email: 'lori@test.com', password: 'password')
+
+request_1 = joe_tenant.service_requests.create(content:'My sink is broken', property: prop_one)
+comment_1 = rob_landlord.service_request_comments.create(service_request: request_1, content:'What do you mean by broken?')
+comment_2 = joe_tenant.service_request_comments.create(service_request: request_1, content:'When I turn the faucet, no water comes out.')

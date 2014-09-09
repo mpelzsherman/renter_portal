@@ -7,6 +7,8 @@ class Tenant < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
   belongs_to :account
   belongs_to :property
+  has_many :service_requests
+  has_many :service_request_comments, as: :commentable
   accepts_nested_attributes_for :account
 
   def self.find_for_facebook_oauth(auth)

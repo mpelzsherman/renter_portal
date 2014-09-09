@@ -13,3 +13,15 @@
     = f.text_area :content, autofocus: true, rows: 10, cols: 80, class: "span8"
   .actions
     = f.submit 'Save'
+%p
+%h1 Comments
+%table.table-striped.table-bordered.table-condensed
+  %tr
+    %th Date
+    %th User
+    %th Content
+  - @service_request.comments.each do |comment|
+    %tr
+      %td= comment.created_at
+      %td= comment.commentable.email
+      %td= comment.content

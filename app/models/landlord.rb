@@ -9,4 +9,5 @@ class Landlord < ActiveRecord::Base
   accepts_nested_attributes_for :account
   has_many :tenants
   has_many :properties
+  has_many :service_request_comments, as: :commentable
 end
