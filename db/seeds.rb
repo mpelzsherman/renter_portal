@@ -35,6 +35,6 @@ lisa_tenant = Tenant.create(property: prop_three, account: lisa, email: 'lisa@te
 jeff_tenant = Tenant.create(property: prop_two, account: jeff, email: 'jeff@test.com', password: 'password')
 lori_tenant = Tenant.create(property: prop_four, account: lori, email: 'lori@test.com', password: 'password')
 
-request_1 = joe_tenant.service_requests.create(content:'My sink is broken', property: prop_one)
-comment_1 = rob_landlord.service_request_comments.create(service_request: request_1, content:'What do you mean by broken?')
-comment_2 = joe_tenant.service_request_comments.create(service_request: request_1, content:'When I turn the faucet, no water comes out.')
+request_1 = joe_tenant.service_requests.create(content:'My sink is broken', property: prop_one, created_at: 2.days.ago)
+comment_1 = rob_landlord.service_request_comments.create(service_request: request_1, content:'What do you mean by broken?', created_at: 1.day.ago)
+comment_2 = joe_tenant.service_request_comments.create(service_request: request_1, content:'When I turn the faucet, no water comes out.', created_at: Time.now)

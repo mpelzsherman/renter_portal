@@ -2,11 +2,26 @@
   %tr
     %th.text-left Date Created
     %th.text-left Content
+    %th.text-left Name
     %th
   %tr
-    %td= @service_request.created_at
+    %td= @service_request.created_at.to_s format: :long
     %td= @service_request.content
+    %td= @service_request.tenant.full_name
     %td= link_to 'Edit', edit_tenant_service_request_path(@current_tenant, @service_request)
+
+%br
+%table.table-bordered.table-condensed
+  %tr
+    %th.text-left Date Created
+    %th.text-left Comment
+    %th.text-left Name
+  - if @service_request.comments
+    - @service_request.comments.each do |comment|
+      %tr
+        %td.text-left= comment.created_at.to_s format: :long
+        %td.text-left= comment.content
+        %td.text-left= comment.commentable.full_name
 
 %br
 = link_to 'Back', tenant_service_requests_path

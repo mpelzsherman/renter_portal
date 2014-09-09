@@ -9,6 +9,7 @@ class ServiceRequestsController < ApplicationController
 
   # GET /service_requests/1/edit
   def edit
+    @comment = ServiceRequestComment.new()
   end
 
   # PATCH/PUT /service_requests/1

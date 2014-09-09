@@ -6,4 +6,5 @@ module ApplicationHelper
   def resource_name
     current_user.class.name.downcase.pluralize
   end
+
 end

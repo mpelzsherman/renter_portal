@@ -1,0 +1,13 @@
+- if current_tenant
+  - path = tenant_service_request_comments_path(user_id: current_tenant.id)
+- elsif current_landlord
+  - path = landlord_service_request_comments_path(user_id: current_landlord.id)
+
+%h1 Add a comment
+
+= form_for @comment, url: path do |f|
+  %div
+    = f.text_area :content, autofocus: true, rows: 10, cols: 80, class: 'span8'
+    = f.hidden_field :service_request_id, value: @service_request.id
+  .actions
+    = f.submit 'Save'
