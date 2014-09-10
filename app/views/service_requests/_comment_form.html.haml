@@ -1,3 +1,16 @@
+%p
+%h2 Comments
+%table.table-striped.table-bordered.table-condensed
+  %tr
+    %th Date
+    %th User
+    %th Content
+  - @service_request.comments.each do |comment|
+    %tr
+      %td= comment.created_at
+      %td= comment.commentable.email
+      %td= comment.content
+
 - if current_tenant
   - path = tenant_service_request_comments_path(user_id: current_tenant.id)
 - elsif current_landlord

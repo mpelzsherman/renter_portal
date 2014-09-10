@@ -31,6 +31,17 @@ class TenantServiceRequestController < ServiceRequestsController
     end
   end
 
+  # PATCH/PUT /service_requests/1
+  # PATCH/PUT /service_requests/1.json
+  def update
+    if @service_request.update(service_request_params)
+      redirect_to tenant_service_requests_path, notice: 'Service request was successfully updated.'
+      ServiceRequestsMailer.send_update_service_request_email(@service_request, current_user.full_name, app_base_url).deliver
+    else
+      render :edit
+    end
+  end
+
   def set_current_user
     @current_user = current_tenant
   end

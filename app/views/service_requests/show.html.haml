@@ -1,16 +1,22 @@
+%h2 Service Issue Details
 %table.table-bordered.table-condensed
   %tr
     %th.text-left Date Created
     %th.text-left Content
+    %th.text-left Status
     %th.text-left Name
     %th
   %tr
     %td= @service_request.created_at.to_s format: :long
     %td= @service_request.content
+    %td= @service_request.status_text
     %td= @service_request.tenant.full_name
-    %td= link_to 'Edit', edit_tenant_service_request_path(@current_tenant, @service_request)
-
+    - if current_tenant
+      %td= link_to 'Edit', edit_tenant_service_request_path(@current_tenant, @service_request)
+    - elsif current_landlord
+      %td= link_to 'Edit', edit_landlord_service_request_path(@current_landlord, @service_request)
 %br
+%h2 Comments
 %table.table-bordered.table-condensed
   %tr
     %th.text-left Date Created
@@ -24,4 +30,8 @@
         %td.text-left= comment.commentable.full_name
 
 %br
-= link_to 'Back', tenant_service_requests_path
+- if current_tenant
+  = link_to 'Back', tenant_service_requests_path
+- elsif current_landlord
+  = link_to 'Back', landlord_service_requests_path
+
